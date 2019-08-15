@@ -1,0 +1,8 @@
+{
+	"name": "hello-world",
+	"author": "April Auger",
+	"private": true,
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
