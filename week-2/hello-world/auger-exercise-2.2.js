@@ -3,7 +3,7 @@
 ; Title:  auger-exercise-2.2.js
 ; Author: April Auger
 ; Date:   14 August 2019
-; Description: Hello world excercise with Express.
+; Description: Hello world exercise with Express.
 ;===========================================
 */
 // Required modules
@@ -13,6 +13,9 @@ var http = require('http');
 var header = require("../../header.js");
 
 // Start program
+
+// Output the header to the console
+console.log(header.display("April", "Auger", "Exercise 2.2") + '\n');
 
 // Variable storing a new Express application
 var app = express();
