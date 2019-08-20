@@ -22,23 +22,23 @@ console.log(header.display("April", "Auger", "Exercise 3.2") + '\n');
 // Variable storing a new Express application
 var app = express();
 
-// Set the location for th views folder
+// Set the location for the views folder
 app.set('views', path.resolve(__dirname, 'views'));
 
-// Set the app to use the EJS templating engine
+// Set app to use the EJS templating engine
 app.set('view engine', 'ejs');
 
 // Use the logger
 app.use(logger('dev'));
 
-// Get request and return a response to the index.ejs page
+// Get the request and return a response to index.ejs
 app.get('/', function(request, response) {
 	response.render('index', {
 		message: 'Hi my name is April Auger and this is my completed exercise 3.2 on how to setup server logging using Morgan.'
 	});
 });
 
-// Start the server and listen on port 3000
+// Create a server and listen on port 3000
 http.createServer(app).listen(3000, function() {
 	console.log('Application started and listening on port %s', 3000);
 });
