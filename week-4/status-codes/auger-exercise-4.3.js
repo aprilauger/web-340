@@ -33,7 +33,7 @@ app.get("/not-found", function(request, response){
 
 	// Return a response in JSON
 	response.json({
-		error: "Resource not found."
+		error: "The resource was not found."
 	});
 });
 
@@ -43,7 +43,7 @@ app.get("/ok", function(request, response){
 
 	// Return a response in JSON
 	response.json({
-		message: "Page loaded correctly."
+		message: "The page loaded correctly."
 	});
 });
 
