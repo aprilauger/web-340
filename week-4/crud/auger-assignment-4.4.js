@@ -3,7 +3,7 @@
 ; Title:  Assignment 4.4
 ; Author: April Auger
 ; Date:   31 August 2019
-; Description: Demonstrates how CRUD operations.
+; Description: Demonstrates how to use CRUD operations.
 ;===========================================
 */
 
