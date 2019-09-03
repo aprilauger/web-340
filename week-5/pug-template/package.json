@@ -1,0 +1,9 @@
+{
+	"name": "pub-template",
+	"author": "April Auger",
+	"private": true,
+	"dependencies": {
+		"express": "^4.17.1",
+		"pug": "^2.0.4"
+	}
+}
