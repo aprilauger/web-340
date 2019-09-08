@@ -1,0 +1,23 @@
+body {
+    margin-top: 80px;
+}
+
+fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 1em;
+    border: 3px solid #eee;
+    background-color: #f9f9f9
+}
+
+legend {
+    width: inherit;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+input,
+optgroup {
+	width: 100%
+}

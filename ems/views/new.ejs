@@ -1,0 +1,55 @@
+<!-- Header -->
+<% include header %>
+
+<!-- Container -->
+<div role="main" class="container">
+	<h1><%= title %></h1><br />
+	<p><%= message %></p><br />
+
+	<form id="new-employee">
+		<fieldset class="form-group">
+			<legend>Name & Age</legend>
+			<div class="form-group">
+				<label for="firstName">First Name</label>
+				<input id="firstName" name="firstName" type="text" required>
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name</label>
+				<input id="lastName" name="lastName" type="text" required>
+			</div>
+
+			<div class="form-group">
+				<label for="age">Age Name</label>
+				<input id="age" name="age" type="text" required>
+			</div>
+		</fieldset>
+
+		<fieldset class="form-group">
+			<legend>Address</legend>
+			<div class="form-group">
+				<label for="address">Address Line</label>
+				<input id="address" name="address" type="text" required>
+			</div>
+
+			<div class="form-group">
+				<label for="city">City</label>
+				<input id="city" name="city" type="text" required>
+			</div>
+
+			<div class="form-group">
+				<label for="state">State</label>
+				<input id="state" name="state" type="text" required>
+			</div>
+
+			<div class="form-group">
+				<label for="zip">Zip</label>
+				<input id="zip" name="zip" type="text" required>
+			</div>
+		</fieldset>
+
+		<button type="submit" class="btn btn-primary">Save</button>
+	</form>
+</div>
+
+<!-- Footer -->
+<% include footer %>
