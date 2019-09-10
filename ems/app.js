@@ -63,6 +63,17 @@ app.get('/new', function(request, response){
 });
 
 // Process the get request from the about page and return a response.
+app.get('/view:employeeId', function(request, response){
+	// Store the employee id retrieved from the URL
+	var employeeId = parseInt(request.params.employeeId, 10);
+
+	response.render('view', {
+		title: "Employee Record Details",
+		employeeId: employeeID
+	});
+});
+
+// Process the get request from the about page and return a response.
 app.get('/about', function(request, response){
 	response.render('about', {
 		title: "About",
