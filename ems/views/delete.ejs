@@ -1,0 +1,19 @@
+<!-- Header -->
+<% include header %>
+
+<!-- Container -->
+<div role="main" class="container">
+	<h1><%= title %></h1>
+	<div><%= message %></div><br />
+
+	<!-- User account menu -->
+	<% include account-menu %>
+
+	Are you sure you would like to delete employee <%= employeeId %>?
+
+	<button class="btn-danger btn">Yes</button>
+	<button class="btn-primary btn">Cancel</button>
+</div>
+
+<!-- Footer -->
+<% include footer %>

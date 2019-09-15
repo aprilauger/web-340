@@ -4,8 +4,23 @@
 
 <!-- Container -->
 <div role="main" class="container">
-	<h1><%= title %></h1><br />
+	<h1><%= title %></h1>
 	<p><%= message %></p><br />
+
+<div class="container">
+	<form id="contact" action="/" method="post">
+		<fieldset>
+			<label for="name">Name</label>
+			<input id="name" type="text" tabindex="1" required autofocus>
+			<label for="email">Email</label>
+			<input id="email" type="email" tabindex="2" required>
+			<label for="phone">Phone</label>
+			<input id="phone" type="tel" tabindex="3" required>
+			<label for="message">Email</label>
+			<textarea id=message" tabindex="5" required></textarea>
+			<button id="contact-submit" class="btn btn-primary" name="submit" type="submit">Send</button>
+		</fieldset>
+	</form>
 </div>
 
 <!-- Footer -->

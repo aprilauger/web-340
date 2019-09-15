@@ -3,8 +3,26 @@
 
 <!-- Container -->
 <div role="main" class="container">
-	<h1><%= title %></h1><br />
-	<p><%= message %></p><br />
+	<h1><%= title %></h1>
+	<div><%= message %></div><br />
+
+	<!-- User account menu -->
+	<% include account-menu %>
+
+	<fieldset>
+		<legend>Personal Information</legend>
+		<div>Name: April Auger</div>
+		<div>Date of Birth: 7/27/1977</div>
+		<div>Address: 4585 Broadway, Folsom, CA 95868</div>
+		<div>Phone: (916) 586-4585</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Department & Title</legend>
+		<div>Department: Information Technology</div>
+		<div>Title: Web Developer</div>
+		<div>Hire Date: 12/1/2001</div>
+	</fieldset>
 </div>
 
 <!-- Footer -->

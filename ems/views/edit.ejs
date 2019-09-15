@@ -4,22 +4,24 @@
 <!-- Container -->
 <div role="main" class="container">
 	<h1><%= title %></h1>
-	<p><%= message %></p>
+	<div><%= message %></div><br />
 
-	<form id="new-employee">
+	<!-- User account menu -->
+	<% include account-menu %>
+	<form id="edit-employee">
 		<fieldset class="form-group">
 			<legend>Personal Information</legend>
 			<div class="form-group">
 				<label for="firstName">First Name</label>
-				<input id="firstName" name="firstName" type="text" required>
+				<input id="firstName" name="firstName" type="text" value="<%= firstName %>" required>
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last Name</label>
-				<input id="lastName" name="lastName" type="text" required>
+				<input id="lastName" name="lastName" type="text" value="<%= lastName %>" required>
 			</div>
 			<div class="form-group">
 				<label for="birth">Date of Birth</label>
-				<input id="birth" name="birth" type="date" required>
+				<input id="birth" name="birth" type="date" value="<%= dateOfBirth %>" required>
 			</div>
 		</fieldset>
 
@@ -27,27 +29,27 @@
 			<legend>Address & Phone</legend>
 			<div class="form-group">
 				<label for="address">Address Line</label>
-				<input id="address" name="address" type="text" required>
+				<input id="address" name="address" type="text" value="<%= address %>" required>
 			</div>
 
 			<div class="form-group">
 				<label for="city">City</label>
-				<input id="city" name="city" type="text" required>
+				<input id="city" name="city" type="text" value="<%= city %>" required>
 			</div>
 
 			<div class="form-group">
 				<label for="state">State</label>
-				<input id="state" name="state" type="text" required>
+				<input id="state" name="state" type="text" value="<%= state %>" required>
 			</div>
 
 			<div class="form-group">
 				<label for="zip">Zip</label>
-				<input id="zip" name="zip" type="text" required>
+				<input id="zip" name="zip" type="text" value="<%= zip %>" required>
 			</div>
 
 			<div class="form-group">
 				<label for="phone">Phone</label>
-				<input id="phone" name="phone" type="text" required>
+				<input id="phone" name="phone" type="text" value="<%= phone %>" required>
 			</div>
 		</fieldset>
 
@@ -55,15 +57,15 @@
 			<legend>Department</legend>
 			<div class="form-group">
 				<label for="department">Department</label>
-				<input id="department" name="department" type="text" required>
+				<input id="department" name="department" type="text" value="<%= department %>" required>
 			</div>
 			<div class="form-group">
 				<label for="position">Position</label>
-				<input id="position" name="position" type="text" required>
+				<input id="position" name="position" type="text" value="<%= position %>" required>
 			</div>
 			<div class="form-group">
 				<label for="hire">Hire Data</label>
-				<input id="hire" name="hire" type="date" required>
+				<input id="hire" name="hire" type="date" value="<%= hireDate %>" required>
 			</div>
 		</fieldset>
 

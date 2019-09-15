@@ -15,4 +15,14 @@ $(document).ready(function () {
 		var $nav = $(".navbar");
 		$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 	});
+
+	// Set active menu item
+	$(function($) {
+		var href = window.location.href;
+		$('ul.nav a').each(function() {
+			if (this.href === href) {
+				$(this).addClass('active');
+			}
+		});
+    });
 });
