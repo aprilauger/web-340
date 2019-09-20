@@ -7,16 +7,14 @@
 ;===========================================
 */
 
+// Start program
+
 // Required modules
 var header = require("../../../header.js");
+var assert = require("assert");
 
 // Output the header to the console
 console.log(header.display("April", "Auger", "Exercise 7.2") + '\n');
-
-// Start program
-
-// Required module
-var assert = require("assert");
 
 // The test code
 // Describes the specifications
@@ -31,6 +29,7 @@ function getFruits(str) {
 	return str.split(",");
 }
 
+// Make this file available to other modules
 module.exports = getFruits;
 
 // End program
