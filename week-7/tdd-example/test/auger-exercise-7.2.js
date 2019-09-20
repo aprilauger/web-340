@@ -15,7 +15,7 @@ console.log(header.display("April", "Auger", "Exercise 7.2") + '\n');
 
 // Start program
 
-// Required modules
+// Required module
 var assert = require("assert");
 
 // The test code
