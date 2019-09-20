@@ -3,7 +3,8 @@
 ; Title:  auger-exercise-7.2.js
 ; Author: April Auger
 ; Date:   20 September 2019
-; Description: TDD application used to test code.
+; Description: TDD application used to demonstrate
+;              how to use mocha and chai to test code.
 ;===========================================
 */
 
