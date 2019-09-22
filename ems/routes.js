@@ -11,6 +11,7 @@
 var express = require('express');
 var Employee = require('./models/employee');
 var router = express.Router();
+var sanitize = require('mongo-sanitize');
 
 // Get request for the index page
 router.get('/', function(request, response){
@@ -22,9 +23,16 @@ router.get('/', function(request, response){
 
 // Get request for the employee listing page
 router.get('/list', function(request, response){
-	response.render('list', {
-		title: "Employee Records",
-		message: ""
+	// Get all employees
+	Employee.find({}, function(err, data) {
+		if(err) {
+			response.json(err);
+		} else {
+			response.render('list', {
+				emp: data,
+				title: "Employee Records"
+			});
+		}
 	});
 });
 
@@ -56,8 +64,6 @@ router.post('/new', function(request, response) {
 			employeeCreatedDate: Date.now()
 		});
 
-		console.log(request.body.hireDate);
-		// console.log(request.body.employee.employeeCreatedDate);
 		var result = newEmployee.save();
 
 		response.render('confirmation', {
@@ -72,72 +78,86 @@ router.post('/new', function(request, response) {
 
 // Get request for the confirmation page
 router.get('/confirmation', function(request, response){
-	// Store the employee id retrieved from the URL
-	var employeeId = parseInt(request.params.employeeId, 10);
-
 	response.render('confirmation', {
 		title: "Confirmation Page",
 		message: ""
 	});
 });
 
+// Get request for the confirmation page
+router.post('/confirmation', function(request, response){
+	response.render('confirmation', {
+		title: "Confirmation Page",
+		message: ""
+	});
+});
 
 // Get request for the employee view page
 router.get('/view/:employeeId', function(request, response){
-	// Store the employee id retrieved from the URL
-	var employeeId = parseInt(request.params.employeeId, 10);
-
-	response.render('view', {
-		title: "Employee Record Details",
-		message: 'Employee ID: ' + employeeId,
-		employeeId: employeeId
+	var id = sanitize(request.params.employeeId);
+	Employee.findById(id, function(err, data) {
+		if(err) {
+			response.json(err);
+		} else {
+			response.render('view', {
+				emp: data,
+				title: "Employee Record"
+			});
+		}
 	});
 });
 
-// Post request for the new employee view page
-router.post('/view/:employeeId', function(request, response){
-	// Store the employee id retrieved from the URL
-	var employeeId = parseInt(request.params.employeeId, 10);
-
-	response.render('view', {
-		title: "Employee Record Details",
-		message: 'Employee ID: ' + employeeId,
-		employeeId: employeeId
-	});
-});
-
-// Get request for the new employee edit page
+// Get request for the employee edit page
 router.get('/edit/:employeeId', function(request, response){
-	// Store the employee id retrieved from the URL
-	var employeeId = parseInt(request.params.employeeId, 10);
-
-	response.render('edit', {
-		title: "Edit Employee Record Details",
-		message: 'Employee ID: ' + employeeId,
-		employeeId: employeeId,
-		firstName: "April",
-		lastName: "Auger",
-		dateOfBirth: "1977-07-27",
-		address: "4585 Broadway",
-		city: "Folsom",
-		state: "CA",
-		zip: "95868",
-		phone: "(916) 586-4585",
-		department: "Information Technology",
-		position: "Web Developer",
-		hireDate: "2001-12-01"
+	var id = sanitize(request.params.employeeId);
+	Employee.findById(id, function(err, data) {
+		if(err) {
+			response.json(err);
+		} else {
+			response.render('edit', {
+				emp: data,
+				title: "Edit Employee Record"
+			});
+		}
 	});
 });
 
-// Get request for the employee deletion page
-router.get('/delete/:employeeId', function(request, response){
-	// Store the employee id retrieved from the URL
-	var employeeId = parseInt(request.params.employeeId, 10);
+// Put request to update employee record
+router.post('/edit/:employeeId', function(request, response) {
+	var id = sanitize(request.params.employeeId);
+	var doc = {
+		employeeFirstName: request.body.firstName,
+		employeeLastName: request.body.lastName,
+		employeeDateOfBirth: request.body.dateOfBirth,
+		employeeAddress: request.body.address,
+		employeeCity: request.body.city,
+		employeeState: request.body.state,
+		employeeZip: request.body.zip,
+		employeePhone: request.body.phone,
+		employeeDepartment: request.body.department,
+		employeePosition: request.body.position,
+		employeeHireDate: request.body.hireDate,
+		employeeUpdatedDate: Date.now()
+	};
 
-	response.render('delete', {
-		title: "Confirm Deletion",
-		message: 'Employee ID: ' + employeeId,
-		employeeId: employeeId
+	Employee.findOneAndUpdate({_id: id}, doc, function(err, foundObject) {
+		if(err) {
+			response.json(err);
+			response.render('confirmation', {
+				title: "Error",
+				message: "There was an error and the employee record was not in the database."
+			});
+		} else if(!foundObject) {
+			response.render('confirmation', {
+				title: "Not Found",
+				message: "The employee record was not in the database."
+			});
+		} else {
+			response.render('confirmation', {
+				title: "Employee record saved",
+				message: "The employee record has been saved."
+			});
+		}
 	});
 });
 

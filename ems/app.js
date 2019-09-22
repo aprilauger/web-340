@@ -18,6 +18,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var header = require('../header.js');
 var routes = require('./routes.js');
+
 // Start program
 
 // Output the header to the console
@@ -27,14 +28,16 @@ console.log(header.display('April', 'Auger', 'Assignment 7.4') + '\n');
 var app = express();
 
 // Database Connection String
-//var mongoDB = "mongodb+srv://aauger:wNoz7FuS2dYd2aHb@buwebdev-cluster-1-bzl71.mongodb.net/ems?retryWrites=true&w=majority";
+var mongoDB = "mongodb+srv://aauger:wNoz7FuS2dYd2aHb@buwebdev-cluster-1-bzl71.mongodb.net/ems?retryWrites=true&w=majority";
 
 // Connect to database
-//mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect("mongodb://localhost:27017/ems",{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+
+// local mongo database
+// mongoose.connect("mongodb://localhost:27017/ems",{useNewUrlParser: true, useUnifiedTopology: true});
 
 // Promise
-//mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 // Variable to hold database connection
 var db = mongoose.connection;
@@ -51,19 +54,19 @@ db.once("open", function() {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Routes
+// The application routes
 app.use(routes);
 
-// Sets up path to assets directory
+// Set up a path to the assets directory
 var assets = path.resolve(__dirname, "assets");
 
-// Sends static files from the assets directory
+// Send static files from the assets directory
 app.use('/assets', express.static(assets));
 
 // Location of views folder
 app.set('views', path.resolve(__dirname, 'views'));
 
-// App uses the EJS templating engine
+// Use the EJS templating engine
 app.set('view engine', 'ejs');
 
 // Use morgan for advanced logging

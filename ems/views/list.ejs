@@ -5,12 +5,10 @@
 <!-- Container -->
 <div role="main" class="container">
 	<h1><%= title %></h1>
-	<div><%= message %></div><br />
-	<!-- The content has been hard coded to demonstrate how the page will appear when connected to the database. -->
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th scope="col">ID</a></th>
 				<th scope="col">First Name</th>
 				<th scope="col">Last Name</th>
 				<th scope="col">Position</th>
@@ -20,45 +18,19 @@
 			</tr>
 		</thead>
 		<tbody>
+			<% emp.forEach(function (emp) { %>
 			<tr>
-				<th scope="row"><a href="/view/1" title="Employee ID: 1">1</a></th>
-				<td>April</td>
-				<td>Auger</td>
-				<td>Web Developer</td>
-				<td>Information Technology</td>
-				<td>12/1/2001</td>
+				<td><%= emp.employeeFirstName %></td>
+				<td><%= emp.employeeLastName %></td>
+				<td><%= emp.employeePosition %></td>
+				<td><%= emp.employeeDepartment %></td>
+				<td><%= emp.employeeHireDate.toISOString().split('T')[0] %></td>
 				<td>
-					<a href="/view/1"><span class="action-icon view"></span></a>
-					<a href="/edit/1"><span class="action-icon edit"></span></a>
-					<a href="/delete/1"><span class="action-icon delete"></span></a>
+					<a href="/view/<%= emp._id %>"><span class="action-icon view"></span></a>
+					<a href="/edit/<%= emp._id %>"><span class="action-icon edit"></span></a>
 				</td>
 			</tr>
-			<tr>
-				<th scope="row"><a href="/view/2" title="Employee ID: 1">2</a></th>
-				<td>Monica</td>
-				<td>Smith</td>
-				<td>Accountant</td>
-				<td>Finance</td>
-				<td>4/6/2012</td>
-				<td>
-					<a href="/view/2"><span class="action-icon view"></span></a>
-					<a href="/edit/2"><span class="action-icon edit"></span></a>
-					<a href="/delete/2"><span class="action-icon delete"></span></a>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row"><a href="/view/3" title="Employee ID: 1">3</a></th>
-				<td>Steve</td>
-				<td>Lee</td>
-				<td>HR Manager</td>
-				<td>Human Resources</td>
-				<td>5/12/2014</td>
-				<td>
-					<a href="/view/3"><span class="action-icon view"></span></a>
-					<a href="/edit/3"><span class="action-icon edit"></span></a>
-					<a href="/delete/3"><span class="action-icon delete"></span></a>
-				</td>
-			</tr>
+			<% }) %>
 		</tbody>
 	</table>
 </div>

@@ -8,14 +8,12 @@ var Schema = mongoose.Schema;
 var EmployeeSchema = new Schema({
 	employeeFirstName: { type: String, required: true },
 	employeeLastName: { type: String, required: true },
-	// employeeDateOfBirth: { type: Date, required: true },
+	employeeDateOfBirth: { type: Date, required: true },
 	employeeAddress: { type: String, required: true },
 	employeeCity: { type: String, required: true },
 	employeeState: {
 		type: String, default: "CA",
-		uppercase: true,
-		minlength: 2,
-		maxlength: 2,
+		uppercase: true
 	},
 	employeeZip: { type: Number, required: true },
 	employeePhone: { type: String, required: true },
@@ -28,12 +26,7 @@ var EmployeeSchema = new Schema({
 	collection: "employees"
 });
 
-// Methods that returns the full name
-EmployeeSchema.methods.fullName = function(){
-	return this.employeeFirstName + " " + this.employeeLastName;
-};
-
-// Attach the EmployeeSchema to an actual Model
+// Attach the EmployeeSchema to an Employee Model
 var Employee = mongoose.model('Employee', EmployeeSchema);
 
 // Make the model available for other modules to require

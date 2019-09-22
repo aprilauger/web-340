@@ -50,7 +50,8 @@ label {
 
 input,
 optgroup,
-textarea {
+textarea,
+select {
     width: 100%;
     max-width: 500px;
     border-radius: 3px;
@@ -178,4 +179,11 @@ accountTabs {
     color: #fff;
     background-color: #45d4fc;
     border-color: #45d4fc;
+}
+
+span.label {
+	display: inline-block;
+	font-weight: 600;
+	margin-right: .5em;
+	color: #555;
 }
