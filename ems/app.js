@@ -13,7 +13,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var logger = require('morgan');
-var header = require('../header.js');
+var helmet = require("helmet");
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var header = require('../header.js');
@@ -26,6 +26,9 @@ console.log(header.display('April', 'Auger', 'Assignment 7.4') + '\n');
 
 // Variable storing a new Express application
 var app = express();
+
+// Set the Content-Security-Policy in the HTTP Header
+app.use(helmet.xssFilter());
 
 // Database Connection String
 var mongoDB = "mongodb+srv://aauger:wNoz7FuS2dYd2aHb@buwebdev-cluster-1-bzl71.mongodb.net/ems?retryWrites=true&w=majority";
