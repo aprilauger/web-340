@@ -16,6 +16,8 @@ var logger = require('morgan');
 var helmet = require("helmet");
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var cookieParser = require("cookie-parser");
+var csrf = require("csurf");
 var header = require('../header.js');
 var routes = require('./routes.js');
 
@@ -24,9 +26,23 @@ var routes = require('./routes.js');
 // Output the header to the console
 console.log(header.display('April', 'Auger', 'Assignment 7.4') + '\n');
 
+// Setup CSRF protection
+var csrfProtection = csrf({ cookie: true });
+
 // Variable storing a new Express application
 var app = express();
 
+// use statements
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(csrfProtection);
+app.use(function(request, response, next) {
+  var token = request.csrfToken();
+  response.cookie("XSRF-TOKEN", token);
+  response.locals.csrfToken = token;
+  next();
+});
 // Set the Content-Security-Policy in the HTTP Header
 app.use(helmet.xssFilter());
 
@@ -52,10 +68,6 @@ db.on("error", console.error.bind(console, "MongoDB connected error: "));
 db.once("open", function() {
     console.log("Application connected to MongoDB Atlas");
 });
-
-// body-parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // The application routes
 app.use(routes);

@@ -7,6 +7,7 @@
 	<p><%= message %></p>
 
 	<form id="new-employee" method="post" action="/new">
+		<input name="_csrf" value="<%= csrfToken %>" type="hidden" />
 		<fieldset class="form-group">
 			<legend>Personal Information</legend>
 			<div class="form-group">
