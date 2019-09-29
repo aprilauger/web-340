@@ -24,15 +24,13 @@ router.get('/', function(request, response){
 // Get request for the employee listing page
 router.get('/list', function(request, response){
 	// Get all employees
-	Employee.find({}, function(err, data) {
-		if(err) {
-			response.json(err);
-		} else {
-			response.render('list', {
-				emp: data,
-				title: "Employee Records"
-			});
-		}
+	Employee.find({}, function(error, data) {
+		if(error) throw error;
+
+		response.render('list', {
+			emp: data,
+			title: "Employee Records"
+		});
 	});
 });
 
@@ -95,30 +93,25 @@ router.post('/confirmation', function(request, response){
 // Get request for the employee view page
 router.get('/view/:employeeId', function(request, response){
 	var id = sanitize(request.params.employeeId);
-	Employee.findById(id, function(err, data) {
-		if(err) {
-			response.json(err);
-		} else {
-			response.render('view', {
-				emp: data,
-				title: "Employee Record"
-			});
-		}
+	Employee.findById(id, function(error, data) {
+		if(error) throw error;
+
+		response.render('view', {
+			emp: data,
+			title: "Employee Record"
+		});
 	});
 });
 
 // Get request for the employee edit page
 router.get('/edit/:employeeId', function(request, response){
 	var id = sanitize(request.params.employeeId);
-	Employee.findById(id, function(err, data) {
-		if(err) {
-			response.json(err);
-		} else {
-			response.render('edit', {
-				emp: data,
-				title: "Edit Employee Record"
-			});
-		}
+	Employee.findById(id, function(error, data) {
+		if(error) throw error;
+		response.render('edit', {
+			emp: data,
+			title: "Edit Employee Record"
+		});
 	});
 });
 
@@ -140,9 +133,9 @@ router.post('/edit/:employeeId', function(request, response) {
 		employeeUpdatedDate: Date.now()
 	};
 
-	Employee.findOneAndUpdate({_id: id}, doc, function(err, foundObject) {
-		if(err) {
-			response.json(err);
+	Employee.findOneAndUpdate({_id: id}, doc, function(error, foundObject) {
+		if(error) {
+			response.json(error);
 			response.render('confirmation', {
 				title: "Error",
 				message: "There was an error and the employee record was not in the database."

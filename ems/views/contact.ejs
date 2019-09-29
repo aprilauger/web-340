@@ -9,6 +9,7 @@
 
 <div class="container">
 	<form id="contact" action="/" method="post">
+		<input name="_csrf" value="<%= csrfToken %>" type="hidden" />
 		<fieldset>
 			<label for="name">Name</label>
 			<input id="name" type="text" tabindex="1" required autofocus>

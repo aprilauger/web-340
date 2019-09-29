@@ -1,6 +1,6 @@
 /*
 ============================================
-; Title:  Assignment 5.4
+; Title:  app.js
 ; Author: April Auger
 ; Date:   3 September 2019
 ; Description: Demonstrates how to create a user

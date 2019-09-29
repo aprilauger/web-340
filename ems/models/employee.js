@@ -1,3 +1,12 @@
+/*
+============================================
+; Title:  employee.js
+; Author: April Auger
+; Date:   27 September 2019
+; Description: The employee schema and model.
+;===========================================
+*/
+
 // Required module
 var mongoose = require('mongoose');
 
