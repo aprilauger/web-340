@@ -18,7 +18,6 @@ var helmet = require("helmet");
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cookieParser = require("cookie-parser");
-var csrf = require("csurf");
 var header = require('../header.js');
 var routes = require('./routes.js');
 
