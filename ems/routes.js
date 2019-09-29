@@ -38,39 +38,65 @@ router.get('/list', function(request, response){
 router.get('/new', function(request, response){
 	response.render('new', {
 		title: "Create Employee Record",
-		message: "Please complete the following fields."
+		message: "Please complete the following fields.",
+		error: ""
 	});
 });
 
 // Post request for the new employee creation page
-router.post('/new', function(request, response) {
-	try {
-		// Create an instance of the model EmployeeModelSchema
-		var newEmployee = new Employee({
-			employeeFirstName: request.body.firstName,
-			employeeLastName: request.body.lastName,
-			employeeDateOfBirth: request.body.dateOfBirth,
-			employeeAddress: request.body.address,
-			employeeCity: request.body.city,
-			employeeState: request.body.state,
-			employeeZip: request.body.zip,
-			employeePhone: request.body.phone,
-			employeeDepartment: request.body.department,
-			employeePosition: request.body.position,
-			employeeHireDate: request.body.hireDate,
-			employeeUpdatedDate: Date.now(),
-			employeeCreatedDate: Date.now()
-		});
+router.post('/process', function(request, response) {
+	// Check that all required fields have been completed
+	let requiredFields = "";
+	if (!request.body.firstName) { requiredFields += '<li>First name</li>'; }
+	if (!request.body.lastName) { requiredFields += '<li>Last name</li>';	}
+	if (!request.body.dateOfBirth) { requiredFields += '<li>Date of birth</li>'; }
+	if (!request.body.address) { requiredFields += '<li>Address</li>'; }
+	if (!request.body.city) { requiredFields += '<li>City</li>'; }
+	if (!request.body.state) { requiredFields += '<li>State</li>'; }
+	if (!request.body.zip) { requiredFields += '<li>Zip</li>'; }
+	if (!request.body.phone) { requiredFields += '<li>Phone</li>'; }
+	if (!request.body.department) {	requiredFields += '<li>Department</li>'; }
+	if (!request.body.position) { requiredFields += '<li>Position</li>'; }
+	if (!request.body.hireDate) { requiredFields += '<li>Hire Date</li>'; }
 
-		var result = newEmployee.save();
-
-		response.render('confirmation', {
+	// If required fields have not been completed, stop and return an error message.
+	if(requiredFields != "") {
+		response.render('new', {
 			title: "Employee record saved",
-			message: "The employee record has been saved."
+			message: "",
+			error: "<b>Entries not completed:</b>" + "<ul>" + requiredFields + "</ul>"
 		});
-    } catch (error) {
-        response.status(500).send(error);
-    }
+		return;
+	// Insert the new employee record into the database
+	} else {
+		try {
+			// Create an instance of the model EmployeeModelSchema
+			var newEmployee = new Employee({
+				employeeFirstName: request.body.firstName,
+				employeeLastName: request.body.lastName,
+				employeeDateOfBirth: request.body.dateOfBirth,
+				employeeAddress: request.body.address,
+				employeeCity: request.body.city,
+				employeeState: request.body.state,
+				employeeZip: request.body.zip,
+				employeePhone: request.body.phone,
+				employeeDepartment: request.body.department,
+				employeePosition: request.body.position,
+				employeeHireDate: request.body.hireDate,
+				employeeUpdatedDate: Date.now(),
+				employeeCreatedDate: Date.now()
+			});
+
+			var result = newEmployee.save();
+
+			response.render('confirmation', {
+				title: "Employee record saved",
+				message: "The employee record has been saved.",
+			});
+		} catch (error) {
+			response.status(500).send(error);
+		}
+	}
 });
 
 

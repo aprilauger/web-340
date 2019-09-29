@@ -4,9 +4,11 @@
 <!-- Container -->
 <div role="main" class="container">
 	<h1><%= title %></h1>
+	<% if (error) { %><div class="alert alert-danger"><%- error %></div><% } %>
+
 	<p><%= message %></p>
 
-	<form id="new-employee" method="post" action="/new">
+	<form id="new-employee" method="post" action="/process">
 		<input name="_csrf" value="<%= csrfToken %>" type="hidden" />
 		<fieldset class="form-group">
 			<legend>Personal Information</legend>
