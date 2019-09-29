@@ -37,6 +37,8 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+// Protection against Cross-site Request Forgery
 app.use(csrfProtection);
 app.use(function(request, response, next) {
   var token = request.csrfToken();
