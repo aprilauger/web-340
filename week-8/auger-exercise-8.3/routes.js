@@ -2,7 +2,7 @@
 ============================================
 ; Title:  Routes.js
 ; Author: April Auger
-; Date:   17 September 2019
+; Date:   29 September 2019
 ; Description: Routes used for the EMS application.
 ;===========================================
 */
@@ -45,7 +45,7 @@ router.get('/new', function(request, response){
 // Post request for the new employee creation page
 router.post('/new', function(request, response) {
 	try {
-		// Create an instance of model EmployeeModelSchema
+		// Create an instance of the model EmployeeModelSchema
 		var newEmployee = new Employee({
 			employeeFirstName: request.body.firstName,
 			employeeLastName: request.body.lastName,
@@ -82,7 +82,7 @@ router.get('/confirmation', function(request, response){
 	});
 });
 
-// Get request for the confirmation page
+// Post request for the confirmation page
 router.post('/confirmation', function(request, response){
 	response.render('confirmation', {
 		title: "Confirmation Page",
@@ -115,7 +115,7 @@ router.get('/edit/:employeeId', function(request, response){
 	});
 });
 
-// Put request to update employee record
+// Post request to update employee record
 router.post('/edit/:employeeId', function(request, response) {
 	var id = sanitize(request.params.employeeId);
 	var doc = {
@@ -133,6 +133,7 @@ router.post('/edit/:employeeId', function(request, response) {
 		employeeUpdatedDate: Date.now()
 	};
 
+	// Update one document in the database
 	Employee.findOneAndUpdate({_id: id}, doc, function(error, foundObject) {
 		if(error) {
 			response.json(error);
