@@ -25,10 +25,7 @@ var routes = require('./routes.js');
 // Start program
 
 // Output the header to the console
-console.log(header.display('April', 'Auger', 'EMS Project - Milestone 4') + '\n');
-
-// Setup CSRF protection
-var csrfProtection = csrf({ cookie: true });
+console.log(header.display('April', 'Auger', 'Exercise 8.2') + '\n');
 
 // Variable storing a new Express application
 var app = express();
@@ -37,13 +34,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(csrfProtection);
-app.use(function(request, response, next) {
-  var token = request.csrfToken();
-  response.cookie("XSRF-TOKEN", token);
-  response.locals.csrfToken = token;
-  next();
-});
+
 // Set the Content-Security-Policy in the HTTP Header
 app.use(helmet.xssFilter());
 
