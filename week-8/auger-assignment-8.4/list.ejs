@@ -1,0 +1,48 @@
+<!--
+============================================
+; Title: list.ejs
+; Author: April Auger
+; Date: 30 September 2019
+; Description: Outputs a list of employees.
+;===========================================
+*/
+-->
+
+<!-- Header -->
+<% include header %>
+
+<!-- Container -->
+<div role="main" class="container">
+	<h1><%= title %></h1>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">First Name</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Position</th>
+				<th scope="col">Department</th>
+				<th scope="col">Hire Date</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% emp.forEach(function (emp) { %>
+			<tr>
+				<td><%= emp.employeeFirstName %></td>
+				<td><%= emp.employeeLastName %></td>
+				<td><%= emp.employeePosition %></td>
+				<td><%= emp.employeeDepartment %></td>
+				<td><%= emp.employeeHireDate.toISOString().split('T')[0] %></td>
+				<td>
+					<a href="/view/<%= emp._id %>"><span class="action-icon view"></span></a>
+					<a href="/edit/<%= emp._id %>"><span class="action-icon edit"></span></a>
+				</td>
+			</tr>
+			<% }) %>
+		</tbody>
+	</table>
+</div>
+
+<!-- Footer -->
+<% include footer %>
