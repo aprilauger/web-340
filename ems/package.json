@@ -5,7 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"server": "nodemon server",
-		"start": "node server.js"
+		"start": "node server.js",
+		"grunt": "grunt"
 	},
 	"dependencies": {
 		"bcrypt-nodejs": "0.0.3",
@@ -17,11 +18,17 @@
 		"express": "^4.17.1",
 		"express-session": "^1.16.2",
 		"helmet": "^3.21.1",
+		"less": "^3.10.3",
 		"mongo-sanitize": "^1.0.1",
 		"mongoose": "^5.7.0",
 		"morgan": "^1.9.1",
 		"nodemon": "^1.19.2",
 		"passport": "^0.4.0",
 		"passport-local": "^1.0.0"
+	},
+	"devDependencies": {
+		"grunt": "^1.0.4",
+		"grunt-cli": "^1.3.2",
+		"grunt-contrib-less": "^2.0.0"
 	}
 }

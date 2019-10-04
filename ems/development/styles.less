@@ -1,0 +1,199 @@
+@primary-color: #00b6e6;
+@secondary-color: #45d4fc;
+
+    /* Main */
+    body {
+        margin-top: 65px;
+        font-family: 'Open Sans', "Helvetica", "Arial", sans-serif;
+        font-weight: 300
+    }
+
+    .h1,
+    .h3,
+    h1,
+    h3 {
+        font-weight: 300;
+        color: @primary-color;
+    }
+
+    h1 {
+        margin-top: 1em;
+        margin-bottom: .5em;
+    }
+
+    .h2,
+    .h4,
+    h2,
+    h4 {
+        font-weight: 600;
+    }
+
+    a,
+    a:visited {
+        color: @primary-color;
+    }
+
+    /* Fieldsets */
+    fieldset {
+        display: block;
+        margin-bottom: 1.5em;
+        padding: 1em;
+        border: 3px solid #eeeeee;
+        background-color: #f9f9f9;
+    }
+
+    fieldset.form-group {
+        max-width: 530px
+    }
+
+    legend {
+        width: inherit;
+        padding-left: .5em;
+        padding-right: .5em;
+        color: #777;
+    }
+
+    /* Forms */
+    label {
+        margin-bottom: .25em;
+    }
+
+    input,
+    optgroup,
+    textarea,
+    select {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 3px;
+        color: #666;
+        border: 0;
+        padding: 11px;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 3px rgba(0, 0, 0, .4);
+    }
+
+    label {
+        display: inline-block;
+        width: 100%;
+    }
+
+    /* Navigation & header */
+    .nav-tabs {
+        margin-bottom: 1.5em
+    }
+
+    .bg-dark {
+        background-color: #304262 !important;
+    }
+
+    .navbar-dark .navbar-nav .active>.nav-link,
+    .navbar-dark .navbar-nav .nav-link.active,
+    .navbar-dark .navbar-nav .nav-link.show,
+    .navbar-dark .navbar-nav .show>.nav-link {
+        color: @primary-color;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, 1);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: .9em;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: @primary-color;
+    }
+
+    .ems-toggler.navbar-toggler {
+        border: none;
+    }
+
+    .ems-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg .navbar-nav .nav-link {
+            padding-right: .75rem;
+            padding-left: .75rem;
+        }
+    }
+
+    .logo {
+        max-width: 40px
+    }
+
+    .hdr {
+        background-image: url(/assets/img/background-image.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: #999;
+        padding-top: 3em;
+        padding-bottom: 3em;
+    }
+
+    /* Account icons */
+    accountTabs {
+        margin-bottom: 1.5em;
+    }
+
+    .action-icon {
+        margin-left: .05em;
+    }
+
+    .action-icon.view {
+        background: url(/assets/img/view.svg) no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+    }
+
+    .action-icon.edit {
+        background: url(/assets/img/edit.svg) no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+    }
+
+    .action-icon.delete {
+        background: url(/assets/img/delete.svg) no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+    }
+
+    /* Contact form */
+    #contact-submit {
+        display: block;
+        margin-top: .75em;
+    }
+
+    /* Buttons */
+
+    .btn-primary {
+        color: #fff;
+        background-color: @primary-color;
+        border-color: @primary-color;
+        font-weight: 600
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: @secondary-color;
+        border-color: @secondary-color;
+    }
+
+    span.label {
+        display: inline-block;
+        font-weight: 600;
+        margin-right: .5em;
+        color: #555;
+    }

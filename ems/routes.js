@@ -15,6 +15,7 @@ var sanitize = require('mongo-sanitize');
 
 // Get request for the index page
 router.get('/', function(request, response){
+	// Render a response to the user
 	response.render('index', {
 		title: "Employee Management System (EMS)",
 		message: "The EMS web application will allow you to add, edit, and remove employee records."
@@ -23,10 +24,11 @@ router.get('/', function(request, response){
 
 // Get request for the employee listing page
 router.get('/list', function(request, response){
-	// Get all employees
+	// Get all documents from the database
 	Employee.find({}, function(error, data) {
 		if(error) throw error;
 
+		// Render a response to the user
 		response.render('list', {
 			emp: data,
 			title: "Employee Records"
@@ -36,6 +38,7 @@ router.get('/list', function(request, response){
 
 // Get request for the new employee creation page
 router.get('/new', function(request, response){
+	// Render a response to the user
 	response.render('new', {
 		title: "Create Employee Record",
 		message: "Please complete the following fields.",
@@ -61,6 +64,7 @@ router.post('/process', function(request, response) {
 
 	// If required fields have not been completed, stop and return an error message.
 	if(requiredFields != "") {
+		// Render a response to the user
 		response.render('new', {
 			title: "Employee record saved",
 			message: "",
@@ -87,8 +91,10 @@ router.post('/process', function(request, response) {
 				employeeCreatedDate: Date.now()
 			});
 
+			// Save the new employee record to the database
 			var result = newEmployee.save();
 
+			// Render a response to the user
 			response.render('confirmation', {
 				title: "Employee record saved",
 				message: "The employee record has been saved.",
@@ -102,6 +108,7 @@ router.post('/process', function(request, response) {
 
 // Get request for the confirmation page
 router.get('/confirmation', function(request, response){
+	// Render a response to the user
 	response.render('confirmation', {
 		title: "Confirmation Page",
 		message: ""
@@ -110,6 +117,7 @@ router.get('/confirmation', function(request, response){
 
 // Post request for the confirmation page
 router.post('/confirmation', function(request, response){
+	// Render a response to the user
 	response.render('confirmation', {
 		title: "Confirmation Page",
 		message: ""
@@ -119,21 +127,33 @@ router.post('/confirmation', function(request, response){
 // Get request for the employee view page
 router.get('/view/:employeeId', function(request, response){
 	var id = sanitize(request.params.employeeId);
+
+	// Query the database for a single document
 	Employee.findById(id, function(error, data) {
 		if(error) throw error;
+		console.log(data);
 
-		response.render('view', {
-			emp: data,
-			title: "Employee Record"
-		});
+		if(data) {
+			// Render a response to the user
+			response.render('view', {
+				emp: data,
+				title: "Employee Record"
+			});
+		} else {
+			response.redirect("/list");
+		}
 	});
 });
 
 // Get request for the employee edit page
 router.get('/edit/:employeeId', function(request, response){
 	var id = sanitize(request.params.employeeId);
+
+	// Query the database for a single document
 	Employee.findById(id, function(error, data) {
 		if(error) throw error;
+
+		// Render a response to the user
 		response.render('edit', {
 			emp: data,
 			title: "Edit Employee Record"
@@ -160,9 +180,10 @@ router.post('/edit/:employeeId', function(request, response) {
 	};
 
 	// Update one document in the database
-	Employee.findOneAndUpdate({_id: id}, doc, function(error, foundObject) {
+	Employee.updateOne({_id: id}, doc, function(error, foundObject) {
 		if(error) {
 			response.json(error);
+
 			response.render('confirmation', {
 				title: "Error",
 				message: "There was an error and the employee record was not in the database."
@@ -183,6 +204,7 @@ router.post('/edit/:employeeId', function(request, response) {
 
 // Get request for the about page
 router.get('/about', function(request, response){
+	// Render a response to the user
 	response.render('about', {
 		title: "About",
 		message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -191,6 +213,7 @@ router.get('/about', function(request, response){
 
 // Get request for the contact page
 router.get('/contact', function(request, response){
+	// Render a response to the user
 	response.render('contact', {
 		title: "Contact",
 		message: "If you have questions, please complete and send our contact form."
