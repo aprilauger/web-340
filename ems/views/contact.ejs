@@ -8,17 +8,17 @@
 	<p><%= message %></p><br />
 
 <div class="container">
-	<form id="contact" action="/" method="post">
+	<form id="contact" action="https://formspree.io/april@sitepioneers.com" method="post">
 		<input name="_csrf" value="<%= csrfToken %>" type="hidden" />
 		<fieldset>
 			<label for="name">Name</label>
-			<input id="name" type="text" tabindex="1" required autofocus>
+			<input id="name" name="name" type="text" tabindex="1" required autofocus>
 			<label for="email">Email</label>
-			<input id="email" type="email" tabindex="2" required>
+			<input id="email" name="email" type="email" tabindex="2" required>
 			<label for="phone">Phone</label>
-			<input id="phone" type="tel" tabindex="3" required>
+			<input id="phone" name="phone" type="tel" tabindex="3" required>
 			<label for="message">Email</label>
-			<textarea id=message" tabindex="5" required></textarea>
+			<textarea id=message" name="message" tabindex="4" required></textarea>
 			<button id="contact-submit" class="btn btn-primary" name="submit" type="submit">Send</button>
 		</fieldset>
 	</form>

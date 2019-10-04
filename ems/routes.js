@@ -2,7 +2,7 @@
 ============================================
 ; Title:  Routes.js
 ; Author: April Auger
-; Date:   29 September 2019
+; Date:   4 October 2019
 ; Description: Routes used for the EMS application.
 ;===========================================
 */
@@ -62,7 +62,7 @@ router.post('/process', function(request, response) {
 	if (!request.body.position) { requiredFields += '<li>Position</li>'; }
 	if (!request.body.hireDate) { requiredFields += '<li>Hire Date</li>'; }
 
-	// If required fields have not been completed, stop and return an error message.
+	// If required fields have not been completed, stop execution and return an error message.
 	if(requiredFields != "") {
 		// Render a response to the user
 		response.render('new', {

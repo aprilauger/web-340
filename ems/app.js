@@ -2,7 +2,7 @@
 ============================================
 ; Title:  app.js
 ; Author: April Auger
-; Date:   3 September 2019
+; Date:   4 October 2019
 ; Description: Demonstrates how to create an
 ;			   employee management system using
 ;			   Express, EJS, and MongoDB.
@@ -46,6 +46,7 @@ app.use(function(request, response, next) {
   response.locals.csrfToken = token;
   next();
 });
+
 // Set the Content-Security-Policy in the HTTP Header
 app.use(helmet.xssFilter());
 
@@ -54,9 +55,6 @@ var mongoDB = "mongodb+srv://aauger:wNoz7FuS2dYd2aHb@buwebdev-cluster-1-bzl71.mo
 
 // Connect to database
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-
-// local mongo database
-// mongoose.connect("mongodb://localhost:27017/ems",{useNewUrlParser: true, useUnifiedTopology: true});
 
 // Promise
 mongoose.Promise = global.Promise;
