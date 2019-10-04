@@ -19,13 +19,13 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cookieParser = require("cookie-parser");
 var csrf = require("csurf");
-var header = require('../header.js');
+var header = require('./header.js');
 var routes = require('./routes.js');
 
 // Start program
 
 // Output the header to the console
-console.log(header.display('April', 'Auger', 'EMS Project - Milestone 4') + '\n');
+console.log(header.display('April', 'Auger', 'EMS Project - Milestone 5') + '\n');
 
 // Setup CSRF protection
 var csrfProtection = csrf({ cookie: true });
@@ -91,6 +91,7 @@ app.set('view engine', 'ejs');
 app.use(logger('short'));
 
 // Create a server and listen on port 8080
-http.createServer(app).listen(3000, function(){
-	console.log('Application started on port 3000!');
+app.set("port", process.env.PORT || 8080);
+http.createServer(app).listen(app.get("port"), function() {
+	console.log("Application started on port " + app.get("port"));
 });

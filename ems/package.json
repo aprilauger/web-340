@@ -4,9 +4,11 @@
 	"private": true,
 	"main": "app.js",
 	"scripts": {
-		"server": "nodemon server",
-		"start": "node server.js",
+		"start": "node app.js",
 		"grunt": "grunt"
+	},
+	"engines": {
+		"node": "10.15.3"
 	},
 	"dependencies": {
 		"bcrypt-nodejs": "0.0.3",
